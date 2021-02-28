@@ -9,7 +9,7 @@ app.use(cors())
 app.use(express.json())
 app.post('/form', async (req, res) => {
 
-    const {email, phone, name} = req.body 
+    const {email, phone, name, description} = req.body 
     console.log(email)
     try {
         const transporter = nodemailer.createTransport({
@@ -26,8 +26,8 @@ app.post('/form', async (req, res) => {
             await transporter.sendMail({
                 from: 'godjs16179@gmail.com',
                 to: "gamergo16179@gmail.com",
-                subject: "Письмо",
-                html: `"Имя пользователя"${name}, его почта и номер телефона ${email}, ${phone}`,
+                subject: "Заказ кондиционера с сайта",
+                html: `Имя пользоателя: ${name}, его почта: ${email} и номер телефона: ${phone}, - описание работы: ${description}`,
                 
             },);
             return res.json({ status: true, response: {msg: 'Сообщение успешно отправлено!' } });
