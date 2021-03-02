@@ -2,13 +2,15 @@ const express = require("express");
 const app = express();
 const nodemailer = require("nodemailer")
 const cors = require("cors")
- 
-const port = 5000
+const config = require('config');
+const port = config.get('Parametrs.port');
+const password = config.get('Parametrs.password');
+const gmail = config.get('Parametrs.gmail');
 
 app.use(cors())
 app.use(express.json())
 app.post('/form', async (req, res) => {
-
+    
     const {email, phone, name, description} = req.body 
     console.log(email)
     try {
